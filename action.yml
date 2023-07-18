@@ -28,6 +28,4 @@ jobs:
           npm install -g uglify-js
 
       - name: Run Minify Script
-        run: |
-          cd ${{ inputs.project_path }}
-          bash action/minify.sh
+        run: bash action/minify.sh
