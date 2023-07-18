@@ -1,7 +1,7 @@
 name: Build Static Website
 
 on: 
-  epository_dispatch
+  repository_dispatch
 
 jobs:
   minify:
