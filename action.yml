@@ -3,7 +3,18 @@ name: Build Static Website
 runs:
   using: 'composite'
   steps:
-    - name: Test
+    - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+    - name: Install dependencies
+      run: |
+        npm install -g html-minifier
+        npm install -g clean-css-cli
+        npm install -g uglify-js
+
+    - name: Minify project
       run: |
         f_exclude_paths() {
           excluded_paths=(
