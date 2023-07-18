@@ -7,74 +7,73 @@ on:
       original_path:
         required: true
         type: string
-      destination_path:
-        required: true
-        type: string
 
+jobs:
+  minify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
 
-runs:
-  using: 'composite'
-  steps:
-    - name: Install NodeJS
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
+      - name: Install dependencies
+        run: |
+          npm install -g html-minifier
+          npm install -g clean-css-cli
+          npm install -g uglify-js
+        shell: bash
 
-    - name: Install dependencies
-      run: |
-        npm install -g html-minifier
-        npm install -g clean-css-cli
-        npm install -g uglify-js
-      shell: bash
+      - name: Minify project
+        run: |
+          f_exclude_paths() {
+            excluded_paths=(
+              "*dist*"
+              "*node_modules*"
+              "./.*"
+              "*.sh"
+            )
 
-    - name: Minify project
-      run: |
-        f_exclude_paths() {
-          excluded_paths=(
-            "*dist*"
-            "*node_modules*"
-            "./.*"
-            "*.sh"
-          )
+            exclude=()
+            for i in "${excluded_paths[@]}"
+            do
+              exclude+=(-not -path "$i")
+            done
+          }
 
-          exclude=()
-          for i in "${excluded_paths[@]}"
-          do
-            exclude+=(-not -path "$i")
-          done
-        }
+          f_build() {
+            cd ${{inputs.original_path}}
 
-        f_build() {
-          folder="dist"
+            folder="dist"
 
-          mkdir $folder
+            mkdir $folder
 
-          while read -d $'\0' file; do
-              rel_path=${file#./}
-              min_path="$folder/$rel_path"
+            while read -d $'\0' file; do
+                rel_path=${file#./}
+                min_path="$folder/$rel_path"
 
-              case "$file" in
-                  *.html)
-                  html-minifier "$file" -o "$min_path" --collapse-whitespace --remove-comments
-                  ;;
-                  *.css)
-                  cleancss "$file" -o "$min_path" --compatibility "ie >= 11, Edge >= 12, Firefox >= 2, Chrome >= 4, Safari >= 3.1, Opera >= 15, iOS >= 3.2"
-                  ;;
-                  *.js)
-                  uglifyjs "$file" -o "$min_path" --compress drop_console --mangle --mangle-props
-                  ;;
-                  *)
-                  cp -r "$file" "$min_path"
-                  ;;
-              esac
-          done < <(find . -mindepth 1 "${exclude[@]}" -print0)
-        }
+                case "$file" in
+                    *.html)
+                    html-minifier "$file" -o "$min_path" --collapse-whitespace --remove-comments
+                    ;;
+                    *.css)
+                    cleancss "$file" -o "$min_path" --compatibility "ie >= 11, Edge >= 12, Firefox >= 2, Chrome >= 4, Safari >= 3.1, Opera >= 15, iOS >= 3.2"
+                    ;;
+                    *.js)
+                    uglifyjs "$file" -o "$min_path" --compress drop_console --mangle --mangle-props
+                    ;;
+                    *)
+                    cp -r "$file" "$min_path"
+                    ;;
+                esac
+            done < <(find . -mindepth 1 "${exclude[@]}" -print0)
+          }
 
-        f_exclude_paths
+          f_exclude_paths
 
-        if f_build; then
-          echo
-          echo Done!
-          echo
-        fi
-      shell: bash
+          if f_build; then
+            echo
+            echo Done!
+            echo
+          fi
+        shell: bash
