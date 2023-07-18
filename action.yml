@@ -4,8 +4,10 @@ on:
   workflow_call:
     inputs:
       project_path:
-        required: true
+        description: 'Path to the files to minify.'
+        required: false
         type: string
+        default: '.'
 
 jobs:
   minify:
