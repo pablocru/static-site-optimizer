@@ -79,3 +79,9 @@ jobs:
           fi
 
           ls -la
+
+          cd ..
+
+          echo "moved back"
+
+          ls -la
