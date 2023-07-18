@@ -4,9 +4,9 @@ runs:
   using: 'composite'
   steps:
     - name: Install NodeJS
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
 
     - name: Install dependencies
       run: |
@@ -14,7 +14,7 @@ runs:
         npm install -g clean-css-cli
         npm install -g uglify-js
       shell: bash
-      
+
     - name: Minify project
       run: |
         f_exclude_paths() {
