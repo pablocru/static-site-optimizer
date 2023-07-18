@@ -4,5 +4,5 @@ runs:
   using: 'composite'
   steps:
     - name: Test
-      run: ls
+      run: cat minify.sh
       shell: bash
