@@ -1,0 +1,10 @@
+name: Build Static Website
+
+on: epository_dispatch
+
+jobs:
+  minify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test
+        run: ls
