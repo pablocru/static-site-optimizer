@@ -4,7 +4,7 @@ description: 'A custom action to minify HTML, CSS, and JS files'
 on:
   workflow_call:
     inputs:
-      original_path:
+      project_path:
         required: true
         type: string
 
@@ -42,7 +42,7 @@ jobs:
           }
 
           f_build() {
-            cd ${{inputs.original_path}}
+            cd ${{inputs.project_path}}
 
             folder="dist"
 
