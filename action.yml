@@ -13,7 +13,8 @@ runs:
         npm install -g html-minifier
         npm install -g clean-css-cli
         npm install -g uglify-js
-
+      shell: bash
+      
     - name: Minify project
       run: |
         f_exclude_paths() {
