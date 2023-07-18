@@ -1,5 +1,4 @@
 name: Build Static Website
-description: 'A custom action to minify HTML, CSS, and JS files'
 
 on:
   workflow_call:
