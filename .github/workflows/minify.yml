@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        
+
       - name: Install NodeJS
         uses: actions/setup-node@v3
         with:
@@ -44,6 +44,8 @@ jobs:
 
           f_build() {
             cd ${{inputs.project_path}}
+
+            ls -la
 
             folder="dist"
 
