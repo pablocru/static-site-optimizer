@@ -1,11 +1,7 @@
 name: Build Static Website
 
-on: 
-  repository_dispatch
-
-jobs:
-  minify:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Test
-        run: ls
+runs:
+  using: 'composite'
+  steps:
+    - name: Test
+      run: ls
