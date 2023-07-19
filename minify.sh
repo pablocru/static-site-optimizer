@@ -55,7 +55,7 @@ f_exclude_paths
 echo "using $ 1:"
 
 if [ -n $1 ]; then
-    echo $1
+    echo "Tiene contenido:" $1
 else
     echo Esta vacio
 fi
