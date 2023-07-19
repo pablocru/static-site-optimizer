@@ -6,10 +6,6 @@ inputs:
     description: Path to the files to minify.
     required: true
     default: '.'
-  output_path:
-    description: Path of the minified files
-    required: true
-    default: dist
 
 runs:
   using: composite
@@ -31,11 +27,11 @@ runs:
       shell: bash
 
     - name: Run Minify Script
-      run: bash minify.sh ${{ inputs.output_path }}
+      run: bash ${{ inputs.project_path }}/minify.sh
       shell: bash
 
     - name: Upload minified files
       uses: actions/upload-artifact@v3
       with:
         name: minified-files
-        path: ${{ inputs.output_path }}
+        path: dist

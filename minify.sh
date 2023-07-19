@@ -24,7 +24,7 @@ f_exclude_paths() {
 }
 
 f_minify() {
-    output_folder=$1
+    output_folder="dist"
 
     while read -d $'\0' file; do
         rel_path=${file#./}
@@ -52,7 +52,7 @@ f_minify() {
 
 f_exclude_paths
 
-if f_minify $1; then
+if f_minify; then
     echo
     echo Done!
     echo
