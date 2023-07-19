@@ -23,8 +23,6 @@ f_exclude_paths() {
 }
 
 f_minify() {
-    mkdir $folder
-
     while read -d $'\0' file; do
         rel_path=${file#./}
         min_path="$folder/$rel_path"
@@ -46,6 +44,7 @@ f_minify() {
 f_exclude_paths
 
 folder=$1
+mkdir $folder
 
 if f_minify; then
     echo
