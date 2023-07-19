@@ -56,12 +56,8 @@ output_folder="dist"
 
 if [ $1 != "." ]; then
     cd $1
+    f_minify
+    cd ..
+else
+    f_minify
 fi
-
-if f_minify; then
-    echo
-    echo Done!
-    echo
-fi
-
-pwd
