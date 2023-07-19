@@ -3,7 +3,7 @@ description: Automate website optimization
 
 inputs:
   project_path:
-    description: Path to the files to minify.
+    description: Path to the files to minify (without slash).
     required: true
     default: '.'
 
