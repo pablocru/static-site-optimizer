@@ -53,6 +53,8 @@ f_minify() {
 f_exclude_paths
 
 echo $1
+echo ${{ inputs.project_path }}
+echo $INPUT_PROJECT_PATH
 
 # if f_minify; then
 #     echo

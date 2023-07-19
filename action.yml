@@ -26,7 +26,7 @@ runs:
       shell: bash
 
     - name: Run Minify Script
-      run: bash minify.sh ${{ input.project_path }}
+      run: bash minify.sh ${{ inputs.project_path }}
       shell: bash
 
     - name: Upload minified files
