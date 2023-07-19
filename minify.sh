@@ -54,14 +54,12 @@ f_exclude_paths
 
 echo "using $ 1:"
 
-if [ $1 = "none" ]; then
-    echo Esta vacio
-else
-    echo "Tiene contenido:" $1
+if [ $1 != "." ]; then
+    cd $1
 fi
 
-# if f_minify; then
-#     echo
-#     echo Done!
-#     echo
-# fi
+if f_minify; then
+    echo
+    echo Done!
+    echo
+fi

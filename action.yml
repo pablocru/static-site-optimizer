@@ -5,7 +5,7 @@ inputs:
   project_path:
     description: Path to the files to minify (without slash).
     required: false
-    default: "none"
+    default: "."
 
 runs:
   using: composite
