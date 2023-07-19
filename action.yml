@@ -1,5 +1,6 @@
 name: Build Static Website
 description: Automate website optimization
+
 inputs:
   project_path:
     description: Path to the files to minify.
@@ -28,3 +29,9 @@ runs:
     - name: Run Minify Script
       run: bash minify.sh ${{ inputs.output_path }}
       shell: bash
+
+    - name: Upload minified files
+      uses: actions/upload-artifact@v3
+      with:
+        name: minified-files
+        path: ${{ inputs.output_path }}
