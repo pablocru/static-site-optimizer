@@ -1,6 +1,7 @@
 #!/bin/bash
 #
-# Script que minifica los archivos .html, .css y .js y los añade a la carpeta "dist".
+# Script que minifica los archivos .html, .css y .js 
+# y los añade a la carpeta solicitada por parametros.
 #
 # -----------------------------------------------------------------------------------
 # Author: Pablo Cru
@@ -23,19 +24,27 @@ f_exclude_paths() {
 }
 
 f_minify() {
+    output_folder=$1
+
     while read -d $'\0' file; do
         rel_path=${file#./}
-        min_path="$folder/$rel_path"
+        min_path="$output_folder/$rel_path"  # Include the output folder in the min_path
+
+        # Get the directory path
+        min_dir=$(dirname "$min_path")  
+
+        # Create the directory if it doesn't exist
+        mkdir -p "$min_dir"
 
         case "$file" in
             *.html)
-            html-minifier "$file" -o "$min_path" --collapse-whitespace --remove-comments
+            npx html-minifier "$file" -o "$min_path" --collapse-whitespace --remove-comments
             ;;
             *.css)
-            cleancss "$file" -o "$min_path" --compatibility "ie >= 11, Edge >= 12, Firefox >= 2, Chrome >= 4, Safari >= 3.1, Opera >= 15, iOS >= 3.2"
+            npx cleancss "$file" -o "$min_path" --compatibility "ie >= 11, Edge >= 12, Firefox >= 2, Chrome >= 4, Safari >= 3.1, Opera >= 15, iOS >= 3.2"
             ;;
             *.js)
-            uglifyjs "$file" -o "$min_path" --compress drop_console --mangle --mangle-props
+            npx uglifyjs "$file" -o "$min_path" --compress drop_console --mangle --mangle-props
             ;;
         esac
     done < <(find . -mindepth 1 "${exclude[@]}" -print0)
@@ -43,10 +52,7 @@ f_minify() {
 
 f_exclude_paths
 
-folder=$1
-mkdir -p "$folder"
-
-if f_minify; then
+if f_minify $1; then
     echo
     echo Done!
     echo
