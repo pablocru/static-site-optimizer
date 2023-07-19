@@ -31,6 +31,8 @@ f_minify() {
         # Get the directory path
         min_dir=$(dirname "$min_path")  
 
+        echo $min_dir
+
         # Create the directory if it doesn't exist
         mkdir -p "$min_dir"
 
