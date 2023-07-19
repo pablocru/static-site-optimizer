@@ -54,12 +54,6 @@ f_exclude_paths
 
 echo "using $ 1:"
 echo $1
-echo
-echo "using inputs:"
-echo ${{ inputs.project_path }}
-echo
-echo "Other:"
-echo $INPUT_PROJECT_PATH
 
 # if f_minify; then
 #     echo
