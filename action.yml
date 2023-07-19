@@ -30,7 +30,7 @@ runs:
       run: bash minify.sh ${{ inputs.project_path }}
       shell: bash
 
-    - run: ls -la
+    - run: ls -la www
       shell: bash
 
     - name: Upload minified files
