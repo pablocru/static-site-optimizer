@@ -24,8 +24,6 @@ f_exclude_paths() {
 }
 
 f_minify() {
-    output_folder="dist"
-
     while read -d $'\0' file; do
         rel_path=${file#./}
         min_path="$output_folder/$rel_path"  # Include the output folder in the min_path
@@ -52,7 +50,7 @@ f_minify() {
 
 f_exclude_paths
 
-echo "using $ 1:"
+output_folder="dist"
 
 if [ $1 != "." ]; then
     cd $1
