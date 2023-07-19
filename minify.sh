@@ -44,7 +44,7 @@ f_minify() {
 f_exclude_paths
 
 folder=$1
-mkdir $folder
+mkdir -p "$folder"
 
 if f_minify; then
     echo
