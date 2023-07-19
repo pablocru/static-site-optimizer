@@ -1,31 +1,30 @@
 name: Build Static Website
+description: Automate website optimization
+inputs:
+  project_path:
+    description: Path to the files to minify.
+    required: true
+    default: '.'
+  output_path:
+    description: Path of the minified files
+    required: true
+    default: dist
 
-on:
-  workflow_call:
-    inputs:
-      project_path:
-        description: 'Path to the files to minify.'
-        required: false
-        type: string
-        default: '.'
+runs:
+  using: composite
+  steps:
+    - name: Install NodeJS
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
 
-jobs:
-  minify:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Install dependencies
+      run: |
+        npm install -g html-minifier
+        npm install -g clean-css-cli
+        npm install -g uglify-js
+      shell: bash
 
-      - name: Install NodeJS
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-
-      - name: Install dependencies
-        run: |
-          npm install -g html-minifier
-          npm install -g clean-css-cli
-          npm install -g uglify-js
-
-      - name: Run Minify Script
-        run: bash action/minify.sh
+    - name: Run Minify Script
+      run: bash minify.sh ${{ inputs.output_path }}
+      shell: bash

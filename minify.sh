@@ -22,9 +22,7 @@ f_exclude_paths() {
     done
 }
 
-f_build() {
-    folder="dist"
-
+f_minify() {
     mkdir $folder
 
     while read -d $'\0' file; do
@@ -47,7 +45,9 @@ f_build() {
 
 f_exclude_paths
 
-if f_build; then
+folder=$1
+
+if f_minify; then
     echo
     echo Done!
     echo
