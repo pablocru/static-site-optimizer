@@ -50,7 +50,8 @@ f_minify() {
 
 f_exclude_paths
 
-output_folder="dist"
+output_folder="$(pwd)/dist"
+mkdir -p "$output_folder"
 
 if [ $1 != "." ]; then
     cd $1

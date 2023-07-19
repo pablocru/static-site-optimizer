@@ -30,9 +30,6 @@ runs:
       run: bash minify.sh ${{ inputs.project_path }}
       shell: bash
 
-    - run: ls -la www
-      shell: bash
-
     - name: Upload minified files
       uses: actions/upload-artifact@v3
       with:
