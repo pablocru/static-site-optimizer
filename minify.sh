@@ -63,3 +63,5 @@ if f_minify; then
     echo Done!
     echo
 fi
+
+pwd
