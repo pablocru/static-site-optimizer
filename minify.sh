@@ -52,8 +52,12 @@ f_minify() {
 
 f_exclude_paths
 
-if f_minify; then
-    echo
-    echo Done!
-    echo
-fi
+if $1
+
+echo $INPUT_PROJECT_PATH
+
+# if f_minify; then
+#     echo
+#     echo Done!
+#     echo
+# fi

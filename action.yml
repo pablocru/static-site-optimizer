@@ -4,8 +4,7 @@ description: Automate website optimization
 inputs:
   project_path:
     description: Path to the files to minify (without slash).
-    required: true
-    default: '.'
+    required: false
 
 runs:
   using: composite
@@ -27,7 +26,7 @@ runs:
       shell: bash
 
     - name: Run Minify Script
-      run: bash ${{ inputs.project_path }}/minify.sh
+      run: bash minify.sh
       shell: bash
 
     - name: Upload minified files
