@@ -26,6 +26,10 @@ runs:
         npm install -g uglify-js
       shell: bash
 
+    - name: Add action path logging
+      run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+      shell: bash
+
     - name: Run Minify Script
       run: bash minify.sh ${{ inputs.output_path }}
       shell: bash
