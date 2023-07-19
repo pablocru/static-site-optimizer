@@ -30,9 +30,7 @@ runs:
       run: bash minify.sh ${{ inputs.project_path }}
       shell: bash
 
-    - run: |
-        apt install tree -y
-        tree
+    - run: ls -la
       shell: bash
 
     - name: Upload minified files
