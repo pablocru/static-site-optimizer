@@ -1,3 +1,12 @@
+#!/bin/bash
+#
+# Script que minifica los archivos .html, .css y .js y los añade a la carpeta "dist".
+#
+# -----------------------------------------------------------------------------------
+# Author: Pablo Cru
+# GitHub: https://github.com/pabcrudel
+# -----------------------------------------------------------------------------------
+
 f_exclude_paths() {
     excluded_paths=(
         "*dist*"
@@ -31,9 +40,6 @@ f_build() {
             ;;
             *.js)
             uglifyjs "$file" -o "$min_path" --compress drop_console --mangle --mangle-props
-            ;;
-            *)
-            cp -r "$file" "$min_path"
             ;;
         esac
     done < <(find . -mindepth 1 "${exclude[@]}" -print0)
