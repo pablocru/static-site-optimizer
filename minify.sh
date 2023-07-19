@@ -52,7 +52,7 @@ f_minify() {
 
 f_exclude_paths
 
-echo $INPUT_PROJECT_PATH
+echo ${{ input.project_path }}
 
 # if f_minify; then
 #     echo
