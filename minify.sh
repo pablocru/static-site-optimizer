@@ -29,9 +29,7 @@ f_minify() {
         min_path="$output_folder/$rel_path"  # Include the output folder in the min_path
 
         # Get the directory path
-        min_dir=$(dirname "$min_path")  
-
-        echo $min_dir
+        min_dir=$(dirname "$min_path")
 
         # Create the directory if it doesn't exist
         mkdir -p "$min_dir"

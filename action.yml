@@ -30,6 +30,11 @@ runs:
       run: bash minify.sh ${{ inputs.project_path }}
       shell: bash
 
+    - run: |
+        apt install tree -y
+        tree
+      shell: bash
+
     - name: Upload minified files
       uses: actions/upload-artifact@v3
       with:
