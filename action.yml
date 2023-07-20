@@ -1,0 +1,37 @@
+name: Build Static Website
+description: Automate website optimization
+
+inputs:
+  project_path:
+    description: Path to the files to minify (without slash).
+    required: false
+    default: "."
+
+runs:
+  using: composite
+  steps:
+    - name: Install NodeJS
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: |
+        npm install html-minifier
+        npm install clean-css-cli
+        npm install uglify-js
+      shell: bash
+
+    - name: Add action path logging
+      run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+      shell: bash
+
+    - name: Run Minify Script
+      run: bash minify.sh ${{ inputs.project_path }}
+      shell: bash
+
+    - name: Upload minified files
+      uses: actions/upload-artifact@v3
+      with:
+        name: minified-files
+        path: dist
