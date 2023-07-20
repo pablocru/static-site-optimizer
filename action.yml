@@ -3,9 +3,13 @@ description: Automate website optimization
 
 inputs:
   project_path:
-    description: Path to the files to minify (without slash).
+    description: Path to the files to minify (without slash)
     required: false
     default: "."
+  artifact_name:
+    description: Name of the output artifact
+    required: false
+    default: minified-files
 
 runs:
   using: composite
@@ -33,5 +37,5 @@ runs:
     - name: Upload minified files
       uses: actions/upload-artifact@v3
       with:
-        name: minified-files
+        name: ${{ inputs.artifact_name }}
         path: dist
