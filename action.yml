@@ -9,7 +9,7 @@ inputs:
   artifact_name:
     description: Name of the output artifact
     required: false
-    default: minified-files
+    default: "minified-files"
 
 runs:
   using: composite
