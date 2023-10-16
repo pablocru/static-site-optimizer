@@ -8,12 +8,19 @@
 # GitHub: https://github.com/pabcrudel
 # -----------------------------------------------------------------------------------
 
+packages=("terser" "clean-css-cli" "html-minifier")
+for package in "${packages[@]}"
+do
+    npm install "$package" --save-dev --silent
+done
+
 f_exclude_paths() {
     excluded_paths=(
         "*dist*"
         "*node_modules*"
         "./.*"
         "*.sh"
+        "*package*"
     )
 
     exclude=()
@@ -42,7 +49,10 @@ f_minify() {
             npx cleancss "$file" -o "$min_path" --compatibility "ie >= 11, Edge >= 12, Firefox >= 2, Chrome >= 4, Safari >= 3.1, Opera >= 15, iOS >= 3.2"
             ;;
             *.js)
-            npx uglifyjs "$file" -o "$min_path" --compress drop_console --mangle --mangle-props
+            npx terser "$file" -o "$min_path" --compress drop_console
+            ;;
+            *)
+            cp "$file" "$min_path"
             ;;
         esac
     done < <(find . -mindepth 1 "${exclude[@]}" -print0)
