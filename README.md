@@ -1,22 +1,44 @@
-## Repository Name: static-website-minifier-workflow
+# Static Website Minifier Workflow
 
-### Description
-The "static-website-minifier-workflow" repository contains a powerful GitHub Actions workflow designed to optimize static websites. This workflow automates the process of minifying HTML, CSS, and JavaScript files, reducing their size and enhancing website loading performance.
+## Description
 
-### Key Features
-- **Automated minification**: Easily integrate this workflow into your static website project to automatically minify HTML, CSS, and JavaScript files on each push or pull request, ensuring optimized code is deployed.
-- **Improved website performance**: Minimizing web assets helps reduce load times, leading to a faster and smoother user experience for visitors.
-- **GitHub Actions powered**: Leveraging the robustness of GitHub Actions, this workflow offers a reliable and efficient solution for website optimization.
-- **Customizable settings**: Fine-tune the minification process by adjusting configuration options to suit the specific requirements of your static site.
+The `static-website-minifier-workflow` is a powerful GitHub
+Actions workflow designed to optimize static websites. This workflow automates
+the process of minifying HTML, CSS, and JavaScript files, reducing their size
+and enhancing website loading performance.
 
-### Usage
-1. Fork this repository to your GitHub account.
-2. Implement the "static-website-minifier-workflow" in your static website project by following the detailed instructions in the README.
-3. Customize the workflow settings to align with your project's needs.
-4. Push changes to your repository and witness the automated minification process in action.
-5. Enjoy the performance benefits of an optimized static website!
+## Usage
 
-### Contribution
-Contributions to this repository are welcomed and encouraged. Whether you discover a bug, want to propose enhancements, or add new features, please feel free to open issues and submit pull requests.
+1. Checkout your repository files
+
+    ```yml
+      steps:
+        - name: Checkout files
+          uses: actions/checkout@<version>
+    ```
+
+2. Call the `static-website-minifier-workflow` in your own workflow.
+
+    ```yml
+        - name: Minify html, css and js files
+          uses: pabcrudel/static-website-minifier-workflow@<version>
+    ```
+
+    A project path could be provided. By default, the project path will be the
+    `root path`.
+
+    ```yml
+          with:
+            project_path: website
+    ```
+
+3. The minified files will be wrapped inside the `dist` folder in the `root
+   path`.
+
+## Contribution
+
+Contributions to this repository are welcomed and encouraged. Whether you
+discover a bug, want to propose enhancements, or add new features, please feel
+free to open issues and submit pull requests.
 
 Let's optimize the web together! 🚀
