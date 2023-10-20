@@ -1,8 +1,8 @@
-# Static Website Minifier Workflow
+# Static Site Optimizer
 
 ## Description
 
-The `static-website-minifier-workflow` is a powerful GitHub
+The `static-site-optimizer` is a powerful GitHub
 Actions workflow designed to optimize static websites. This workflow automates
 the process of minifying HTML, CSS, and JavaScript files, reducing their size
 and enhancing website loading performance.
@@ -17,11 +17,11 @@ and enhancing website loading performance.
           uses: actions/checkout@<version>
     ```
 
-2. Call the `static-website-minifier-workflow` in your own workflow.
+2. Call the `static-site-optimizer` in your own workflow.
 
     ```yml
         - name: Minify html, css and js files
-          uses: pabcrudel/static-website-minifier-workflow@<version>
+          uses: pabcrudel/static-site-optimizer@<version>
     ```
 
     A project path could be provided. By default, the project path will be the
