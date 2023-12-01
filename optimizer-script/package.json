@@ -1,0 +1,11 @@
+{
+  "name": "optimizer-script",
+  "version": "1.0.0",
+  "description": "Minify HTML, CSS, and JS files to improve website performance",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pablo Cru (pabcrudel)",
+  "license": "MIT"
+}
