@@ -4,7 +4,8 @@
   "description": "Minify HTML, CSS, and JS files to improve website performance",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx rollup -c"
   },
   "author": "Pablo Cru (pabcrudel)",
   "license": "MIT",
