@@ -1,5 +1,5 @@
 {
-  "name": "optimizer-script",
+  "name": "static-site-optimizer",
   "version": "1.0.0",
   "description": "Minify HTML, CSS, and JS files to improve website performance",
   "main": "index.js",
